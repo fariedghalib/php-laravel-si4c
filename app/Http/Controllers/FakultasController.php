@@ -57,7 +57,10 @@ class FakultasController extends Controller
      */
     public function edit(Fakultas $fakultas)
     {
-        //
+        $fakultas = Fakultas::find($fakultas);//select * from fakultas where id = $fakultas
+        // dd($fakultas);
+        return view('fakultas.edit', compact('fakultas'));
+        
     }
 
     /**
@@ -71,8 +74,11 @@ class FakultasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fakultas $fakultas)
+    public function destroy($fakultas)
     {
-        //
+    $fakultas = Fakultas::find($fakultas);    
+    //dd($fakultas);
+    #fakultas->delete(); //delete from fakultas`
+    return redirect()->route('fakultas.index')->with('success', 'Data berhasil dihapus'); // redirect ke halaman index fakultas
     }
 }
